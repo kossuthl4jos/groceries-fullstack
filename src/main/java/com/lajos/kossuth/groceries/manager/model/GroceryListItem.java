@@ -4,19 +4,18 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.LocalDateTime;
+
 @Table("GROCERY_LIST_ITEMS")
-public @Data class GroceryListItem {
+@Data
+public class GroceryListItem {
     @Id
     private Integer id;
+    private Integer groceryListId;
     private String name;
-    private int quantity;
-    private boolean completed;
-    private int completedBy;
-
-    public GroceryListItem(Integer id, String name, int quantity, boolean completed) {
-        this.id = id;
-        this.name = name;
-        this.quantity = quantity;
-        this.completed = completed;
-    }
+    private Integer quantity;
+    private Boolean completed;
+    private String completedBy;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

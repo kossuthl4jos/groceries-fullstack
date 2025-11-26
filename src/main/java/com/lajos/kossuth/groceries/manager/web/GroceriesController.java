@@ -7,7 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.*;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController // when booting up, Spring checks all classes for these
 public class GroceriesController {
@@ -27,16 +28,16 @@ public class GroceriesController {
     }
 
     @GetMapping("/groceries-lists")
-    public Iterable<GroceryList> getGroceriesLists() {
+    public List<GroceryList> getGroceriesLists() {
         return groceriesService.getGroceriesLists();
     }
 
     @GetMapping("/groceries-lists/{id}")
-    public GroceryList getGroceriesList(@PathVariable String id) {
-        GroceryList groceryList = getGroceriesList(id);
+    public GroceryList getGroceriesList(@PathVariable Integer id) {
+        GroceryList groceryList = groceriesService.getGroceriesList(id);
         if (groceryList == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Grocery list not found");
         return groceryList;
-    };
+    }
 
     @DeleteMapping("/groceries-lists/{id}")
     public void delete(@PathVariable Integer id) {

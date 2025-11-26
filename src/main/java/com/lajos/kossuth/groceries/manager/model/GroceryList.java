@@ -3,24 +3,24 @@ package com.lajos.kossuth.groceries.manager.model;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Table("GROCERY_LISTS")
-public @Data class GroceryList {
+@Data
+public class GroceryList {
     @Id
     private Integer id;
     @NotEmpty
     private String name;
-    private GroceryListItem[] groceryListItems;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-    public GroceryList() {
-    }
-
-    public GroceryList(Integer id, String name, GroceryListItem[] groceryListItems) {
-        this.id = id;
-        this.name = name;
-        this.groceryListItems = groceryListItems;
-    }
+    @Transient
+    private List<GroceryListItem> groceryListItems;
 }
 
 
