@@ -27,7 +27,7 @@ public class GroceriesController {
     }
 
     @GetMapping("/groceries-lists")
-    public Collection<GroceryList> getGroceriesLists() {
+    public Iterable<GroceryList> getGroceriesLists() {
         return groceriesService.getGroceriesLists();
     }
 
@@ -39,16 +39,18 @@ public class GroceriesController {
     };
 
     @DeleteMapping("/groceries-lists/{id}")
-    public void delete(@PathVariable String id) {
-        GroceryList groceryList = groceriesService.deleteGroceriesList(id);
-        if (groceryList == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Grocery list to remove was not found");
+    public void delete(@PathVariable Integer id) {
+        try {
+            groceriesService.deleteGroceriesList(id);
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Grocery list could not be deleted");
+        }
     }
 
     @PostMapping("/groceries-lists")
     public GroceryList create(@RequestBody @Valid GroceryList groceryList) {
-        groceryList.setId(UUID.randomUUID().toString());
-        groceriesService.createGroceriesList(groceryList);
-        return groceryList;
+        GroceryList createdGroceryList = groceriesService.createGroceriesList(groceryList);
+        return createdGroceryList;
     }
 }
 
