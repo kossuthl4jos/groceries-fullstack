@@ -1,3 +1,6 @@
+drop table if exists grocery_list_items;
+drop table if exists grocery_lists;
+
 create table grocery_lists (
         id bigint auto_increment primary key,
         name varchar(255) not null
