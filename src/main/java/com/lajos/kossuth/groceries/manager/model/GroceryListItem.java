@@ -10,12 +10,11 @@ import java.time.LocalDateTime;
 @Data
 public class GroceryListItem {
     @Id
-    private Integer id;
-    private Integer groceryListId;
+    private Long id;
+
+    private Long groceryListId;
     private String name;
     private Integer quantity;
     private Boolean completed;
     private String completedBy;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }

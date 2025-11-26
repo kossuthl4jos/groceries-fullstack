@@ -29,7 +29,7 @@ public class GroceriesService {
         return groceryLists;
     }
 
-    public GroceryList getGroceriesList(Integer id) {
+    public GroceryList getGroceriesList(Long id) {
         GroceryList groceryList = groceryListRepository.findById(id).orElse(null);
         if (groceryList != null) {
             groceryList.setGroceryListItems(groceryListItemRepository.findByGroceryListId(id));
@@ -37,7 +37,7 @@ public class GroceriesService {
         return groceryList;
     }
 
-    public void deleteGroceriesList(Integer id) {
+    public void deleteGroceriesList(Long id) {
         groceryListRepository.deleteById(id);
     }
 

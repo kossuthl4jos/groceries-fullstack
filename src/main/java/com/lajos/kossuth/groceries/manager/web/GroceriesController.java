@@ -33,14 +33,14 @@ public class GroceriesController {
     }
 
     @GetMapping("/groceries-lists/{id}")
-    public GroceryList getGroceriesList(@PathVariable Integer id) {
+    public GroceryList getGroceriesList(@PathVariable Long id) {
         GroceryList groceryList = groceriesService.getGroceriesList(id);
         if (groceryList == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Grocery list not found");
         return groceryList;
     }
 
     @DeleteMapping("/groceries-lists/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         try {
             groceriesService.deleteGroceriesList(id);
         } catch (NoSuchElementException e) {

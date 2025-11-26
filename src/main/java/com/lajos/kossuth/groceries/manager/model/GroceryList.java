@@ -13,11 +13,10 @@ import java.util.List;
 @Data
 public class GroceryList {
     @Id
-    private Integer id;
+    private Long id;
+
     @NotEmpty
     private String name;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
     @Transient
     private List<GroceryListItem> groceryListItems;

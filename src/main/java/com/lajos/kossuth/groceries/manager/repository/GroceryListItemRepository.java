@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface GroceryListItemRepository extends CrudRepository<GroceryListItem, Integer> {
-    List<GroceryListItem> findByGroceryListId(Integer groceryListId);
+public interface GroceryListItemRepository extends CrudRepository<GroceryListItem, Long> {
+    List<GroceryListItem> findByGroceryListId(Long groceryListId);
 }
