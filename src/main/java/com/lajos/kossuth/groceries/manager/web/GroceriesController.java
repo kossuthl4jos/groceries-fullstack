@@ -10,17 +10,21 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-@RestController // when booting up, Spring checks all classes for these
+@RestController // when booting up, Spring checks all classes for these annotations
 public class GroceriesController {
     private final GroceriesService groceriesService;
 
     public GroceriesController(GroceriesService groceriesService) {
         this.groceriesService = groceriesService;
     }
-
     // the above is the same as the following:
     //    @Autowired
     //    private GroceriesService groceriesService;
+
+    //    public GroceriesController() {
+    //        this.groceriesService = new GroceriesService(); // this is NOT GOOD practice
+    //    }
+
 
     @GetMapping("/hello") // get method to /hello
     public String hello() {
